@@ -46,7 +46,7 @@ create_repository(
 
 ## After setup
 
-- Add a secret variable, `PYPI_API_TOKEN`, to your repository containing the token for publishing the package to PyPI.
+- The GitHub workflows use "trusted publisher workflow" to publish packages to PyPI. Read more instructions [here](https://docs.pypi.org/trusted-publishers/).
   - Tagging the repository will trigger an action to test, generate documentation, and publish the package to PyPI.
 - Install [tox](https://tox.wiki/en/4.23.2/) to handle package tasks. GitHub Actions relies on the tox configuration to test, generate documentation, and publish packages.
 - (Optional) Enable the [pre-commit.ci](https://pre-commit.ci/) bot for your repository.

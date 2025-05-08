@@ -108,7 +108,7 @@ html_theme = "furo"
     proj_name = Path(project_path).parts[-1]
 
     new_readme = f"""[![PyPI-Server](https://img.shields.io/pypi/v/{proj_name}.svg)](https://pypi.org/project/{proj_name}/)
-![Unit tests](https://github.com/BiocPy/{proj_name}/actions/workflows/pypi-test.yml/badge.svg)
+![Unit tests](https://github.com/BiocPy/{proj_name}/actions/workflows/run-tests.yml/badge.svg)
 
 # {proj_name}
 
