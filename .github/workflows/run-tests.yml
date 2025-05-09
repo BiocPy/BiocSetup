@@ -1,9 +1,10 @@
 name: Test the library
 
 on:
-  branches:
-    - master # for legacy repos
-    - main
+  push:
+    branches:
+      - master # for legacy repos
+      - main
   pull_request:
     branches:
       - master # for legacy repos
