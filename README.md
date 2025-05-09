@@ -27,8 +27,10 @@ biocsetup my-new-package --description "Description of my package" --license MIT
 ```
 
 Options:
+
 - `--description`, `-d`: Project description
 - `--license`, `-l`: License to use (default: MIT)
+- `--rst`: To use reStructuredText, otherwise uses Markdown by default.
 
 ### Python API
 
@@ -40,7 +42,8 @@ from biocsetup import create_repository
 create_repository(
     project_path="my-new-package",
     description="Description of my package",
-    license="MIT"
+    license="MIT",
+    rst=False,
 )
 ```
 

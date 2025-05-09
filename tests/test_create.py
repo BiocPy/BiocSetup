@@ -87,3 +87,16 @@ def test_create_repository_with_license(temp_dir):
     with open(setup_cfg, "r") as f:
         content = f.read()
         assert license in content
+
+def test_create_repository_with_rst(temp_dir):
+    """Test repository creation with RST."""
+    project_path = os.path.join(temp_dir, "test-t=rst")
+
+    create_repository(
+        project_path=project_path,
+        rst=True
+    )
+
+    index_rst = Path(project_path) / "docs" / "index.rst"
+    assert os.path.exists(str(index_rst))
+

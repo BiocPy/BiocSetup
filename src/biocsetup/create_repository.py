@@ -14,6 +14,7 @@ def create_repository(
     project_path: str,
     description: Optional[str] = "Add a short description here!",
     license: str = "MIT",
+    rst: bool = False,
 ) -> None:
     """
     Create a new BiocPy Python package repository.
@@ -28,16 +29,24 @@ def create_repository(
         license:
             License to use.
             Defaults to 'MIT'.
+
+        rst:
+            Whether to use 'markdown' or 'rst'.
+            Defaults to False, to use 'markdown'.
     """
     # Create project using pyscaffold with markdown extension
     if description is None:
         description = "Add a short description here!"
 
+    extensions = []
+    if not rst:
+        extensions = [Markdown()]
+
     opts = {
         "project_path": project_path,
         "description": description,
         "license": license,
-        "extensions": [Markdown()],
+        "extensions": extensions,
     }
     api.create_project(**opts)
 
@@ -108,7 +117,7 @@ html_theme = "furo"
     proj_name = Path(project_path).parts[-1]
 
     new_readme = f"""[![PyPI-Server](https://img.shields.io/pypi/v/{proj_name}.svg)](https://pypi.org/project/{proj_name}/)
-![Unit tests](https://github.com/BiocPy/{proj_name}/actions/workflows/run-tests.yml/badge.svg)
+![Unit tests](https://github.com/YOUR_ORG_OR_USERNAME/{proj_name}/actions/workflows/run-tests.yml/badge.svg)
 
 # {proj_name}
 
