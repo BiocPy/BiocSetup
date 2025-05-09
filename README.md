@@ -27,8 +27,10 @@ biocsetup my-new-package --description "Description of my package" --license MIT
 ```
 
 Options:
+
 - `--description`, `-d`: Project description
 - `--license`, `-l`: License to use (default: MIT)
+- `--rst`: To use reStructuredText, otherwise uses Markdown by default.
 
 ### Python API
 
@@ -40,17 +42,19 @@ from biocsetup import create_repository
 create_repository(
     project_path="my-new-package",
     description="Description of my package",
-    license="MIT"
+    license="MIT",
+    rst=False,
 )
 ```
 
 ## After setup
 
-- Add a secret variable, `PYPI_API_TOKEN`, to your repository containing the token for publishing the package to PyPI.
+- The GitHub workflows use "trusted publisher workflow" to publish packages to PyPI. Read more instructions [here](https://docs.pypi.org/trusted-publishers/).
   - Tagging the repository will trigger an action to test, generate documentation, and publish the package to PyPI.
 - Install [tox](https://tox.wiki/en/4.23.2/) to handle package tasks. GitHub Actions relies on the tox configuration to test, generate documentation, and publish packages.
 - (Optional) Enable the [pre-commit.ci](https://pre-commit.ci/) bot for your repository.
 - (Optional) Install [ruff](https://docs.astral.sh/ruff/) for code formatting.
+- (Optional) Setup [codecov](https://about.codecov.io/) for coverage reports.
 
 <!-- pyscaffold-notes -->
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.3.0
+
+- Use Trusted publisher workflow to publish packages to PyPI.
+- Update ruff configuration.
+- Streamlining github actions for testing on various platforms and python versions.
+- Optional codecov setup to upload coverage reports.
+- Support reStructuredText in addition to markdown.
+
 ## Version 0.2.0
 
 - Rename github actions to `run-tests` & `publish-pypi`.
