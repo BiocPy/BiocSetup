@@ -86,24 +86,31 @@ jobs:
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
           tox --installpkg '${{ needs.prepare.outputs.wheel-distribution }}'
           -- -rFEx --durations 10 --color yes  # pytest args
+          -- --cov --cov-branch --cov-report=xml  # coverage args
 
-      - name: Generate coverage report
-        run: pipx run coverage lcov -o coverage.lcov
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          slug: ${{ github.repository }}
 
-      - name: Upload partial coverage report
-        uses: coverallsapp/github-action@v2
-        with:
-          path-to-lcov: coverage.lcov
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          flag-name: ${{ matrix.platform }} - py${{ matrix.python }}
-          parallel: true
+      # - name: Generate coverage report
+      #   run: pipx run coverage lcov -o coverage.lcov
 
-  finalize:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Finalize coverage report
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          parallel-finished: true
+  #     - name: Upload partial coverage report
+  #       uses: coverallsapp/github-action@v2
+  #       with:
+  #         path-to-lcov: coverage.lcov
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         flag-name: ${{ matrix.platform }} - py${{ matrix.python }}
+  #         parallel: true
+
+  # finalize:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Finalize coverage report
+  #       uses: coverallsapp/github-action@master
+  #       with:
+  #         github-token: ${{ secrets.GITHUB_TOKEN }}
+  #         parallel-finished: true
