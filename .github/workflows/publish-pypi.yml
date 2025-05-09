@@ -26,6 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install tox
 
+      - name: Setup git creds
+        run: |
+          git config --global user.email "gituser@biocpy"
+          git config --global user.name "Biocpy test user"
+
       - name: Test with tox
         run: |
           tox
