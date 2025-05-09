@@ -99,4 +99,3 @@ def test_create_repository_with_rst(temp_dir):
 
     index_rst = Path(project_path) / "docs" / "index.rst"
     assert os.path.exists(str(index_rst))
-
