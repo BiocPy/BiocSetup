@@ -146,16 +146,16 @@ and [PyScaffold](https://pyscaffold.org/).
 line-length = 120
 src = ["src"]
 exclude = ["tests"]
-extend-ignore = ["F821"]
+lint.extend-ignore = ["F821"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.ruff.format]
 docstring-code-format = true
 docstring-code-line-length = 20
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["E402", "F401"]
 """
 
