@@ -51,7 +51,7 @@ jobs:
       - name: Run tests
         run: >-
           pipx run --python '${{ steps.setup-python.outputs.python-path }}'
-          tox 
+          tox
           -- -rFEx --durations 10 --color yes --cov --cov-branch --cov-report=xml  # pytest args
 
       - name: Upload coverage reports to Codecov with GitHub Action
