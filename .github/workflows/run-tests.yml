@@ -30,7 +30,7 @@ jobs:
           - macos-latest
           - windows-latest
     runs-on: ${{ matrix.platform }}
-    name: Python ${{ matrix.python-version }}, ${{ matrix.platform }}
+    name: Python ${{ matrix.python }}, ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
 
@@ -55,30 +55,20 @@ jobs:
           tox
           -- -rFEx --durations 10 --color yes --cov --cov-branch --cov-report=xml  # pytest args
 
+      - name: Check for codecov token availability
+        id: codecov-check
+        shell: bash
+        run: |
+          if [ ${{ secrets.CODECOV_TOKEN }} != '' ]; then
+            echo "codecov=true" >> $GITHUB_OUTPUT;
+          else
+            echo "codecov=false" >> $GITHUB_OUTPUT;
+          fi
+
       - name: Upload coverage reports to Codecov with GitHub Action
         uses: codecov/codecov-action@v5
+        if: ${{ steps.codecov-check.outputs.available == 'true' }}
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
           slug: ${{ github.repository }}
           flags: ${{ matrix.platform }} - py${{ matrix.python }}
-
-      # - name: Generate coverage report
-      #   run: pipx run coverage lcov -o coverage.lcov
-
-  #     - name: Upload partial coverage report
-  #       uses: coverallsapp/github-action@v2
-  #       with:
-  #         path-to-lcov: coverage.lcov
-  #         github-token: ${{ secrets.GITHUB_TOKEN }}
-  #         flag-name: ${{ matrix.platform }} - py${{ matrix.python }}
-  #         parallel: true
-
-  # finalize:
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Finalize coverage report
-  #       uses: coverallsapp/github-action@master
-  #       with:
-  #         github-token: ${{ secrets.GITHUB_TOKEN }}
-  #         parallel-finished: true
