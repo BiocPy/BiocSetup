@@ -9,21 +9,21 @@ biocsetup.cli module
 
 .. automodule:: biocsetup.cli
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 biocsetup.create\_repository module
 -----------------------------------
 
 .. automodule:: biocsetup.create_repository
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
 
 Module contents
 ---------------
 
 .. automodule:: biocsetup
    :members:
-   :undoc-members:
    :show-inheritance:
+   :undoc-members:
