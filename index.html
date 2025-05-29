@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="BiocSetup" href="readme.html" />
 
     <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
-        <title>biocsetup 0.3.0 documentation</title>
+        <title>biocsetup 0.3.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -167,7 +167,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">biocsetup 0.3.0 documentation</div></a>
+      <a href="#"><div class="brand">biocsetup 0.3.1 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
   
-  <span class="sidebar-brand-text">biocsetup 0.3.0 documentation</span>
+  <span class="sidebar-brand-text">biocsetup 0.3.1 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -201,6 +201,7 @@
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <ul>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributions &amp; Help</a></li>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
@@ -251,17 +252,58 @@
         <article role="main" id="furo-main-content">
           <section class="tex2jax_ignore mathjax_ignore" id="biocsetup">
 <h1>biocsetup<a class="headerlink" href="#biocsetup" title="Link to this heading">¶</a></h1>
-<p>Add a short description here!</p>
-<section id="note">
-<h2>Note<a class="headerlink" href="#note" title="Link to this heading">¶</a></h2>
-<blockquote>
-<div><p>This is the main page of your project’s <a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a> documentation. It is
-formatted in <a class="reference external" href="https://daringfireball.net/projects/markdown/">Markdown</a>. Add additional pages by creating md-files in
-<code class="docutils literal notranslate"><span class="pre">docs</span></code> or rst-files (formatted in <a class="reference external" href="http://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a>) and adding links to
-them in the <code class="docutils literal notranslate"><span class="pre">Contents</span></code> section below.</p>
-<p>Please check <a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a> and <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">MyST</a> for more information
-about how to document your project and how to configure your preferences.</p>
-</div></blockquote>
+<p>BiocSetup helps scaffold new Python packages in <a class="reference external" href="https://github.com/biocpy">BiocPy</a> with consistent configuration for package management.</p>
+<p>It automates the setup process by using PyScaffold with additional configurations specific to BiocPy projects, including documentation setup, GitHub Actions for testing and publishing, and code quality tools.</p>
+<p>For more details, see our <a class="reference external" href="https://github.com/BiocPy/developer_guide">developer guide</a>.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>biocsetup
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<section id="command-line-interface">
+<h3>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Link to this heading">¶</a></h3>
+<p>Create a new package using the command line:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>biocsetup<span class="w"> </span>my-new-package<span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;Description of my package&quot;</span><span class="w"> </span>--license<span class="w"> </span>MIT
+</pre></div>
+</div>
+<p>Options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--description</span></code>, <code class="docutils literal notranslate"><span class="pre">-d</span></code>: Project description</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--license</span></code>, <code class="docutils literal notranslate"><span class="pre">-l</span></code>: License to use (default: MIT)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--rst</span></code>: To use reStructuredText, otherwise uses Markdown by default.</p></li>
+</ul>
+</section>
+<section id="python-api">
+<h3>Python API<a class="headerlink" href="#python-api" title="Link to this heading">¶</a></h3>
+<p>You can also create packages programmatically:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">biocsetup</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_repository</span>
+
+<span class="n">create_repository</span><span class="p">(</span>
+    <span class="n">project_path</span><span class="o">=</span><span class="s2">&quot;my-new-package&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Description of my package&quot;</span><span class="p">,</span>
+    <span class="n">license</span><span class="o">=</span><span class="s2">&quot;MIT&quot;</span><span class="p">,</span>
+    <span class="n">rst</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="after-setup">
+<h2>After setup<a class="headerlink" href="#after-setup" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The GitHub workflows use “trusted publisher workflow” to publish packages to PyPI. Read more instructions <a class="reference external" href="https://docs.pypi.org/trusted-publishers/">here</a>.</p>
+<ul>
+<li><p>Tagging the repository will trigger an action to test, generate documentation, and publish the package to PyPI.</p></li>
+</ul>
+</li>
+<li><p>Install <a class="reference external" href="https://tox.wiki/en/4.23.2/">tox</a> to handle package tasks. GitHub Actions relies on the tox configuration to test, generate documentation, and publish packages.</p></li>
+<li><p>(Optional) Enable the <a class="reference external" href="https://pre-commit.ci/">pre-commit.ci</a> bot for your repository.</p></li>
+<li><p>(Optional) Install <a class="reference external" href="https://docs.astral.sh/ruff/">ruff</a> for code formatting.</p></li>
+<li><p>(Optional) Setup <a class="reference external" href="https://about.codecov.io/">codecov</a> for coverage reports.</p></li>
+</ul>
 </section>
 <section id="contents">
 <h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
@@ -274,6 +316,18 @@ about how to document your project and how to configure your preferences.</p>
 <li class="toctree-l2"><a class="reference internal" href="readme.html#note">Note</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#overview-of-this-document">Overview of this document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#packaging-setup">Packaging setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#adding-your-source-code">Adding your source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#documentation-with-sphinx">Documentation with Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#development-workflows">Development workflows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#coding-standards-linting">Coding standards &amp; linting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#extras">Extras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#other-tools-guides-to-explore">Other tools/guides to explore:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributions &amp; Help</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#issue-reports">Issue Reports</a></li>
 <li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation-improvements">Documentation Improvements</a></li>
@@ -284,7 +338,7 @@ about how to document your project and how to configure your preferences.</p>
 <li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
 <li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-3-0">Version 0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-3-0-0-3-1">Version 0.3.0 - 0.3.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-2-0">Version 0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-1-1-0-1-2">Version 0.1.1 - 0.1.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="changelog.html#version-0-1-0">Version 0.1.0</a></li>
@@ -353,7 +407,13 @@ about how to document your project and how to configure your preferences.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">biocsetup</a><ul>
-<li><a class="reference internal" href="#note">Note</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#command-line-interface">Command Line Interface</a></li>
+<li><a class="reference internal" href="#python-api">Python API</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#after-setup">After setup</a></li>
 <li><a class="reference internal" href="#contents">Contents</a></li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
@@ -367,7 +427,7 @@ about how to document your project and how to configure your preferences.</p>
       
     </aside>
   </div>
-</div><script src="_static/documentation_options.js?v=e259d695"></script>
+</div><script src="_static/documentation_options.js?v=4621528c"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=5fa4622c"></script>

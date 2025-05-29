@@ -1,0 +1,646 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Contributing" href="contributing.html" /><link rel="prev" title="BiocSetup" href="readme.html" />
+
+    <!-- Generated with Sphinx 8.2.3 and Furo 2024.08.06 -->
+        <title>Python Package Development - biocsetup 0.3.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">biocsetup 0.3.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="index.html">
+  
+  
+  <span class="sidebar-brand-text">biocsetup 0.3.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Overview</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributions &amp; Help</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="authors.html">Authors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/modules.html">Module Reference</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Module Reference</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/biocsetup.html">biocsetup package</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="_sources/tutorial.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section class="tex2jax_ignore mathjax_ignore" id="python-package-development">
+<h1>Python Package Development<a class="headerlink" href="#python-package-development" title="Link to this heading">¶</a></h1>
+<p>Ah, Python packaging! It’s like assembling IKEA furniture with half the instructions and toolkit missing. If you’ve ever tried to create a Python package before, you’re probably familiar with how complicated it gets very quickly.</p>
+<p>(#todo: make a cartoon)</p>
+<p>“There should be one—and preferably only one—obvious way to do it.” - The <a class="reference external" href="https://en.wikipedia.org/wiki/Zen_of_Python">Zen of Python</a></p>
+<p>“LOL” - Python Packaging</p>
+<p>This guide presents a consistent workflow to make Python packaging less painful and easy. We’ll use a set of well tested tools while perhaps not <em>perfect</em>, work well together to automate the boring stuff and let you focus on writing code.</p>
+<section id="overview-of-this-document">
+<h2>Overview of this document<a class="headerlink" href="#overview-of-this-document" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Package structure:</strong> Using a scaffolder (<code class="docutils literal notranslate"><span class="pre">BiocSetup</span> <span class="pre">&amp;</span> <span class="pre">PyScaffold</span></code>) gives every project the same starting structure.</p></li>
+<li><p><strong>Isolation for testing:</strong> <code class="docutils literal notranslate"><span class="pre">tox</span></code> runs tests in clean, isolated environments. This mimics how your code will run elsewhere and catches issues before your users.</p></li>
+<li><p><strong>The <code class="docutils literal notranslate"><span class="pre">src</span></code> layout:</strong> Putting your code in <code class="docutils literal notranslate"><span class="pre">src/package_name</span></code> prevents a common pitfall: accidentally importing your local code instead of the installed version during testing.</p></li>
+<li><p><strong>Automation:</strong> GitLab CI/CD or GitHub Actions handle testing, documentation builds, and publishing. Set it up once, and let the bots do all the work.</p></li>
+<li><p><strong>Release and development cycles:</strong> We strictly separate development (branches) from releases (tags), preventing accidental releases to PyPI or interfering with development cycles. For multi-developer projects, try to maintain master/main in a functional state and put incomplete work within a feature branch. Depending upon team size and the value of peer review, consider using pull requests prior to merging into main/master. Use <a class="reference external" href="https://semver.org/">semantic versioning</a> for tags.</p></li>
+</ol>
+</section>
+<section id="packaging-setup">
+<h2>Packaging setup<a class="headerlink" href="#packaging-setup" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="https://github.com/BiocPy/BiocSetup">BiocSetup</a> (based on <a class="reference external" href="https://pyscaffold.org/en/stable/">PyScaffold</a>) automates some of the common configurtion we use across all BiocPy packages. Yes, it’s a package to create packages—very meta I know :).</p>
+<p>First, install <code class="docutils literal notranslate"><span class="pre">biocsetup</span></code> if you haven’t already (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">biocsetup</span></code>).</p>
+<p>Then, run the <code class="docutils literal notranslate"><span class="pre">biocsetup</span></code> command:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>⋊&gt;<span class="w"> </span>~/P/scratch<span class="w"> </span>biocsetup<span class="w"> </span>my-awesome-package<span class="w"> </span>--description<span class="w"> </span><span class="s2">&quot;This is going to change the world!&quot;</span><span class="w"> </span>--license<span class="w"> </span>MIT
+<span class="k">done</span>!<span class="w"> </span>🐍<span class="w"> </span>🌟<span class="w"> </span>✨
+BiocSetup<span class="w"> </span>complete!<span class="w"> </span>🚀<span class="w"> </span>💥
+</pre></div>
+</div>
+<p>This command creates a complete project structure:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>⋊&gt;<span class="w"> </span>~/P/my-awesome-package<span class="w"> </span>on<span class="w"> </span>master<span class="w">  </span>tree<span class="w"> </span>-L<span class="w"> </span><span class="m">1</span>
+.
+├──<span class="w"> </span>AUTHORS.md<span class="w">        </span><span class="c1"># Who wrote this; Defaults to git user</span>
+├──<span class="w"> </span>CHANGELOG.md<span class="w">      </span><span class="c1"># What changed and when?</span>
+├──<span class="w"> </span>CONTRIBUTING.md<span class="w">   </span><span class="c1"># How can others help?</span>
+├──<span class="w"> </span>LICENSE.txt<span class="w">       </span><span class="c1"># How can others use your code? (MIT is a good start but consult the lawyers)</span>
+├──<span class="w"> </span>README.md<span class="w">         </span><span class="c1"># README of your project</span>
+├──<span class="w"> </span>docs<span class="w">              </span><span class="c1"># Documentation lives here (Sphinx)</span>
+├──<span class="w"> </span>pyproject.toml<span class="w">    </span><span class="c1"># Modern Python project metadata &amp; build system config</span>
+├──<span class="w"> </span>setup.cfg<span class="w">         </span><span class="c1"># The main configuration hub (metadata, dependencies, tool settings)</span>
+├──<span class="w"> </span>setup.py<span class="w">          </span><span class="c1"># Mostly a shim for compatibility now, config is in setup.cfg/pyproject.toml</span>
+├──<span class="w"> </span>src<span class="w">               </span><span class="c1"># &lt;--- YOUR CODE GOES HERE!</span>
+├──<span class="w"> </span>tests<span class="w">             </span><span class="c1"># &lt;--- YOUR TESTS GO HERE!</span>
+└──<span class="w"> </span>tox.ini<span class="w">           </span><span class="c1"># Configuration for testing and other tasks (tox)</span>
+
+<span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">9</span><span class="w"> </span>files
+</pre></div>
+</div>
+<p><strong>Markdown vs. reStructuredText:</strong> By default, <code class="docutils literal notranslate"><span class="pre">biocsetup</span></code> uses Markdown (<code class="docutils literal notranslate"><span class="pre">.md</span></code>) as the preferred format for documentation. If you’re a fan of <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html">reStructuredText</a> (<code class="docutils literal notranslate"><span class="pre">.rst</span></code>) or just enjoy slightly more cryptic syntax, add the <code class="docutils literal notranslate"><span class="pre">--rst</span></code> flag when running <code class="docutils literal notranslate"><span class="pre">biocsetup</span></code>. The only noticeable difference will be file extensions that make your eyes bleed (<code class="docutils literal notranslate"><span class="pre">.rst</span></code> instead of <code class="docutils literal notranslate"><span class="pre">.md</span></code>).</p>
+</section>
+<section id="adding-your-source-code">
+<h2>Adding your source code<a class="headerlink" href="#adding-your-source-code" title="Link to this heading">¶</a></h2>
+<p>All your Python source code goes inside the <code class="docutils literal notranslate"><span class="pre">src</span></code> directory, specifically within the subdirectory named after your package (e.g., <code class="docutils literal notranslate"><span class="pre">src/my_awesome_package/</span></code>).</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>src/
+└──<span class="w"> </span>my_awesome_package/
+<span class="w">    </span>├──<span class="w"> </span>__init__.py<span class="w">      </span><span class="c1"># Makes it a package, exports stuff</span>
+<span class="w">    </span>├──<span class="w"> </span>module1.py<span class="w">       </span><span class="c1"># Your code</span>
+<span class="w">    </span>├──<span class="w"> </span>another_module.py<span class="w"> </span><span class="c1"># More code</span>
+<span class="w">    </span>└──<span class="w"> </span>_internal_utils.py<span class="w"> </span><span class="c1"># Maybe some private helpers?</span>
+</pre></div>
+</div>
+<p>Why <code class="docutils literal notranslate"><span class="pre">src/my_awesome_package/</span></code> and not just <code class="docutils literal notranslate"><span class="pre">my_awesome_package/</span></code> at the root? This prevents your local development code from accidentally shadowing the installed version if you happen to run Python from the project root. <a class="reference external" href="https://xkcd.com/1987/">Remember the xkcd cartoon?</a></p>
+<section id="writing-and-running-tests">
+<h3>Writing and running tests<a class="headerlink" href="#writing-and-running-tests" title="Link to this heading">¶</a></h3>
+<p>Writing code without tests is like, hmmm, thrilling, but not recommended. But then when you have too much code and no tests, it’s daunting. A practice would be to write <strong><em>tests and code together</em></strong> right away!</p>
+<ul class="simple">
+<li><p><strong>Where tests live:</strong> All your test files go into the <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory.</p></li>
+<li><p><strong>Naming convention:</strong> <a class="reference external" href="https://docs.pytest.org/en/stable/"><code class="docutils literal notranslate"><span class="pre">pytest</span></code></a> (our chosen test runner) automatically discovers test files named <code class="docutils literal notranslate"><span class="pre">test_*.py</span></code> and functions/methods named <code class="docutils literal notranslate"><span class="pre">test_*</span></code>.</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tests/
+├──<span class="w"> </span>test_core.py
+└──<span class="w"> </span>test_edge_cases.py
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Running tests:</strong> This is where <a class="reference external" href="https://tox.wiki/en/4.26.0/"><code class="docutils literal notranslate"><span class="pre">tox</span></code></a> shines. It reads the <code class="docutils literal notranslate"><span class="pre">tox.ini</span></code> file, creates a temporary virtual environment, installs your package and its dependencies <em>exactly</em> as defined, and then runs <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. This ensures your tests run in a clean, reproducible environment, mimicking how users will install your package.</p></li>
+</ul>
+<p>To run the default test suite (which includes running <code class="docutils literal notranslate"><span class="pre">pytest</span></code> and checking code coverage):</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>⋊&gt;<span class="w"> </span>~/P/s/my-awesome-package<span class="w"> </span>on<span class="w"> </span>master<span class="w">  </span>tox
+.pkg:<span class="w"> </span>install_requires&gt;<span class="w"> </span>python<span class="w"> </span>-I<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span><span class="s1">&#39;setuptools&gt;=46.1.0&#39;</span><span class="w"> </span><span class="s1">&#39;setuptools_scm[toml]&gt;=5&#39;</span>
+..............
+..............
+..............
+collected<span class="w"> </span><span class="m">2</span><span class="w"> </span>items
+
+tests/test_skeleton.py::test_fib<span class="w"> </span>PASSED<span class="w">                                               </span><span class="o">[</span><span class="w"> </span><span class="m">50</span>%<span class="o">]</span>
+tests/test_skeleton.py::test_main<span class="w"> </span>PASSED<span class="w">                                              </span><span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
+
+<span class="o">======================================</span><span class="w"> </span>tests<span class="w"> </span><span class="nv">coverage</span><span class="w"> </span><span class="o">=======================================</span>
+_____________________<span class="w"> </span>coverage:<span class="w"> </span>platform<span class="w"> </span>darwin,<span class="w"> </span>python<span class="w"> </span><span class="m">3</span>.12.7-final-0<span class="w"> </span>______________________
+
+Name<span class="w">                                 </span>Stmts<span class="w">   </span>Miss<span class="w"> </span>Branch<span class="w"> </span>BrPart<span class="w">  </span>Cover<span class="w">   </span>Missing
+--------------------------------------------------------------------------------
+src/my_awesome_package/__init__.py<span class="w">       </span><span class="m">6</span><span class="w">      </span><span class="m">0</span><span class="w">      </span><span class="m">0</span><span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">100</span>%
+src/my_awesome_package/skeleton.py<span class="w">      </span><span class="m">32</span><span class="w">      </span><span class="m">1</span><span class="w">      </span><span class="m">2</span><span class="w">      </span><span class="m">0</span><span class="w">    </span><span class="m">97</span>%<span class="w">   </span><span class="m">135</span>
+--------------------------------------------------------------------------------
+TOTAL<span class="w">                                   </span><span class="m">38</span><span class="w">      </span><span class="m">1</span><span class="w">      </span><span class="m">2</span><span class="w">      </span><span class="m">0</span><span class="w">    </span><span class="m">98</span>%
+<span class="o">=====================================</span><span class="w"> </span><span class="m">2</span><span class="w"> </span>passed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.05s<span class="w"> </span><span class="o">=====================================</span>
+<span class="w">  </span>default:<span class="w"> </span>OK<span class="w"> </span><span class="o">(</span><span class="m">9</span>.92<span class="o">=</span>setup<span class="o">[</span><span class="m">9</span>.26<span class="o">]</span>+cmd<span class="o">[</span><span class="m">0</span>.66<span class="o">]</span><span class="w"> </span>seconds<span class="o">)</span>
+<span class="w">  </span>congratulations<span class="w"> </span>:<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="m">10</span>.04<span class="w"> </span>seconds<span class="o">)</span>
+</pre></div>
+</div>
+<p>What’s neat is that you also get coverage reports, which tell you which parts of your code are covered by tests. A reminder of all the edge cases ignored.</p>
+</section>
+<section id="help-my-dependencies-are-missing">
+<h3>“Help! My Dependencies Are Missing!”<a class="headerlink" href="#help-my-dependencies-are-missing" title="Link to this heading">¶</a></h3>
+<p>Your package probably uses other Python libraries (NumPy, Pandas, etc.). If these are not listed as dependencies, your isolated tox environment does not install them and you will run into errors about missing packages. Open <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> and look for this section:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">[</span><span class="nv">options</span><span class="p p-Indicator">]</span>
+<span class="l l-Scalar l-Scalar-Plain">install_requires =</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">importlib-metadata; python_version&lt;&quot;3.8&quot;</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">pandas==2.0</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">numpy&gt;=1.9</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">scipy~=1.3.1</span>
+<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">scanpy&lt;=3.0.3; python_version&gt;&quot;3.10&quot;</span>
+</pre></div>
+</div>
+<p>The syntax here is pretty straightforward:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">package==2.0</span></code>: Exactly version 2.0</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package&gt;=1.9</span></code>: Version 1.9 or higher</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package~=1.3.1</span></code>: Version 1.3.1 or compatible updates (1.3.*)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">package&lt;=3.0.3</span></code>: Version 3.0.3 or lower</p></li>
+</ul>
+<p>You can add Python version constraints with the semicolon notation, like <code class="docutils literal notranslate"><span class="pre">;</span> <span class="pre">python_version&gt;&quot;3.10&quot;</span></code>. This is useful when certain packages don’t play well with specific Python versions, which happens quite often.</p>
+<p>While you’re editing <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, also explore the package metadata, especially description, links to documentation, repository information etc.</p>
+<p><strong>Note:</strong> The fewer packages you depend on, the more sane your life will be. Especially when your dependencies are known to break things a lot and are not backwards compatible. In cases like this, <strong><em>pin</em></strong> the version of these packages!</p>
+</section>
+</section>
+<section id="documentation-with-sphinx">
+<h2>Documentation with Sphinx<a class="headerlink" href="#documentation-with-sphinx" title="Link to this heading">¶</a></h2>
+<p>The scaffolding process sets up the <code class="docutils literal notranslate"><span class="pre">docs</span></code> directory with a default theme (<a class="reference external" href="https://github.com/pradyunsg/furo">furo</a>, <a class="reference external" href="https://pydata-sphinx-theme.readthedocs.io/en/stable/">pydata</a> is another fan favorite). <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> will automatically compile the docstrings in your code and generate API documentation.</p>
+<ul class="simple">
+<li><p><strong>Adding pages:</strong></p>
+<ol class="arabic simple">
+<li><p>Create new Markdown (<code class="docutils literal notranslate"><span class="pre">.md</span></code>) or reStructuredText (<code class="docutils literal notranslate"><span class="pre">.rst</span></code>) files inside the <code class="docutils literal notranslate"><span class="pre">docs/</span></code> directory (e.g., <code class="docutils literal notranslate"><span class="pre">docs/tutorial.md</span></code>).</p></li>
+<li><p>Link to your new page from <code class="docutils literal notranslate"><span class="pre">docs/index.md</span></code> (or <code class="docutils literal notranslate"><span class="pre">docs/index.rst</span></code>) under the <code class="docutils literal notranslate"><span class="pre">toctree</span></code> (Table of Contents Tree) directive.</p></li>
+<li><p>By default, <code class="docutils literal notranslate"><span class="pre">docs/changelog.md</span></code> includes the content of <code class="docutils literal notranslate"><span class="pre">/CHANGELOG.md</span></code>, so you only have to update the root changelog.</p></li>
+<li><p>Write detailed docstrings and use <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">autodoc</a> for API documentation. Docstring format is to taste, but <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#s3.8-comments-and-docstrings">Google</a> or <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard">NumPy</a> style are easily readable and both can be parsed by the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/napoleon.html">napoleon</a> Sphinx extension.</p></li>
+</ol>
+</li>
+<li><p><strong>Building the docs:</strong> Use <code class="docutils literal notranslate"><span class="pre">tox</span></code> again! This ensures the docs build in a clean environment with all necessary extensions.</p></li>
+</ul>
+<p>To generate the HTML files for the documentation:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>⋊&gt;<span class="w"> </span>~/P/s/my-awesome-package<span class="w"> </span>on<span class="w"> </span>master<span class="w">  </span>tox<span class="w"> </span>-e<span class="w"> </span>docs
+docs:<span class="w"> </span>install_deps&gt;<span class="w"> </span>python<span class="w"> </span>-I<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>/Users/kancherj/Projects/scratch/my-awesome-package/docs/requirements.txt
+..............
+..............
+..............
+highlighting<span class="w"> </span>module<span class="w"> </span>code...<span class="w"> </span><span class="o">[</span><span class="m">100</span>%<span class="o">]</span><span class="w"> </span>my_awesome_package.skeleton
+writing<span class="w"> </span>additional<span class="w"> </span>pages...<span class="w"> </span>search<span class="w"> </span><span class="k">done</span>
+dumping<span class="w"> </span>search<span class="w"> </span>index<span class="w"> </span><span class="k">in</span><span class="w"> </span>English<span class="w"> </span><span class="o">(</span>code:<span class="w"> </span>en<span class="o">)</span>...<span class="w"> </span><span class="k">done</span>
+dumping<span class="w"> </span>object<span class="w"> </span>inventory...<span class="w"> </span><span class="k">done</span>
+build<span class="w"> </span>succeeded,<span class="w"> </span><span class="m">14</span><span class="w"> </span>warnings.
+
+The<span class="w"> </span>HTML<span class="w"> </span>pages<span class="w"> </span>are<span class="w"> </span><span class="k">in</span><span class="w"> </span>docs/_build/html.
+<span class="w">  </span>docs:<span class="w"> </span>OK<span class="w"> </span><span class="o">(</span><span class="m">27</span>.45<span class="o">=</span>setup<span class="o">[</span><span class="m">19</span>.75<span class="o">]</span>+cmd<span class="o">[</span><span class="m">7</span>.70<span class="o">]</span><span class="w"> </span>seconds<span class="o">)</span>
+<span class="w">  </span>congratulations<span class="w"> </span>:<span class="o">)</span><span class="w"> </span><span class="o">(</span><span class="m">27</span>.54<span class="w"> </span>seconds<span class="o">)</span>
+</pre></div>
+</div>
+<p>Open <code class="docutils literal notranslate"><span class="pre">docs/_build/html/index.html</span></code> in your browser to see the results.</p>
+<p><strong>Note:</strong> The default setup includes <a class="reference external" href="https://myst-nb.readthedocs.io/en/latest/">MyST</a> as a parser, which means you can include executable code cells in your documentation (like Jupyter Notebook cells). This is great for tutorials where users can see the code, the output, and explanations side-by-side, like in the <a class="reference external" href="https://biocpy.github.io/GenomicRanges/tutorial.html#pandas-dataframe">genomicranges tutorial</a>.</p>
+<p><strong>furo vs pydata?</strong> If you want to provide documentation for multiple releases/versions of your package, I recommend pydata. Furo currently does not support that out of the box. Checkout <a class="reference external" href="https://github.com/sphinx-contrib/multiversion">sphinx-multiversion</a> and the corresponding <a class="reference external" href="https://pydata-sphinx-theme.readthedocs.io/en/stable/user_guide/version-dropdown.html">pydata page</a> for more details.</p>
+</section>
+<section id="development-workflows">
+<h2>Development workflows<a class="headerlink" href="#development-workflows" title="Link to this heading">¶</a></h2>
+<p>So far, you have code, tests, and docs. How do we manage changes and release cycles?</p>
+<p><strong>Fundamental Rule:</strong> Development happens in branches, releases happen from tags. <strong>Merging to <code class="docutils literal notranslate"><span class="pre">main</span></code>/<code class="docutils literal notranslate"><span class="pre">master</span></code> does NOT automatically release to PyPI.</strong> This is crucial!</p>
+<p><strong><em>If your documentation suggests users to clone the repo and run code, something is wrong!!</em></strong> Pandas or NumPy does not ask users to do this, make it easier for your users to run the tools. It not only streamlines workflows but increases accessibility, helps debug issues faster!</p>
+<section id="the-development-cycle">
+<h3>The development cycle:<a class="headerlink" href="#the-development-cycle" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Create a branch:</strong> Need to add a feature or fix a bug? Create a descriptive branch from the latest <code class="docutils literal notranslate"><span class="pre">main</span></code> (or <code class="docutils literal notranslate"><span class="pre">master</span></code>):</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/perf
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Code &amp; test:</strong> Write your code in <code class="docutils literal notranslate"><span class="pre">src/</span></code>, add corresponding tests in <code class="docutils literal notranslate"><span class="pre">tests/</span></code>.</p></li>
+<li><p><strong>Test locally:</strong> Run <code class="docutils literal notranslate"><span class="pre">tox</span></code> frequently! Catch errors early.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>tox
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Commit &amp; push:</strong> Make small, logical commits. Push your branch to GitHub. If you want to follow a structure for commits, <a class="reference external" href="https://www.conventionalcommits.org/en/v1.0.0/">conventional commits</a> is very helpful.</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;FEAT: 10x performance&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/perf
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p><strong>Pull Request (PR):</strong> Go to GitHub and open a Pull Request from your branch to <code class="docutils literal notranslate"><span class="pre">main</span></code>. Describe your changes.</p></li>
+<li><p><strong>CI checks:</strong> GitHub Actions (configured in <code class="docutils literal notranslate"><span class="pre">.github/workflows/run-tests.yml</span></code>) will automatically run <code class="docutils literal notranslate"><span class="pre">tox</span></code> on your PR to ensure tests pass on different Python versions and platforms (windows, mac and linux).</p></li>
+<li><p><strong>Merge:</strong> Once reviewed and CI passes, merge the PR into <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p><strong>Repeat:</strong> Continue the cycle for the next feature or fix.</p></li>
+</ol>
+</section>
+<section id="the-release-cycle-deploying-to-pypi">
+<h3>The Release Cycle (Deploying to PyPI):<a class="headerlink" href="#the-release-cycle-deploying-to-pypi" title="Link to this heading">¶</a></h3>
+<p>When you decide that the current state of <code class="docutils literal notranslate"><span class="pre">main</span></code> is ready for users:</p>
+<ol class="arabic simple">
+<li><p><strong>Ensure <code class="docutils literal notranslate"><span class="pre">main/master</span></code> is clean:</strong> Make sure the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch is up-to-date and all tests pass.</p></li>
+<li><p><strong>Update <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code>:</strong> Document the new version’s changes. <a class="reference external" href="https://keepachangelog.com/en/1.0.0/">Keepachangelog</a> has a good guide on what and how to document. If you follow conventional commits, there are tools that can automate your changelog generation.</p></li>
+<li><p><strong>Tag the release:</strong> Create a Git tag matching the version number (e.g., <code class="docutils literal notranslate"><span class="pre">0.1.0</span></code>).</p></li>
+</ol>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
+git<span class="w"> </span>tag<span class="w"> </span><span class="m">0</span>.1.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Release version 0.1.0&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span><span class="m">0</span>.1.0<span class="w"> </span><span class="c1"># &lt;--- Push the tag!</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p><strong>Automation takes over:</strong> Pushing the tag triggers a specific GitHub Action (<code class="docutils literal notranslate"><span class="pre">.github/workflows/publish-pypi.yml</span></code>):</p>
+<ul class="simple">
+<li><p>It checks out the tagged commit.</p></li>
+<li><p>It runs tests one last time (just in case).</p></li>
+<li><p>It builds the package (source distribution and wheel).</p></li>
+<li><p>It builds the documentation.</p></li>
+<li><p>It <strong>publishes the package to PyPI</strong> using “Trusted Publishing” (<a class="reference external" href="https://docs.pypi.org/trusted-publishers/">instructions</a>, no API tokens needed in GitHub).</p></li>
+<li><p>It deploys the documentation to GitHub Pages.</p></li>
+</ul>
+</li>
+<li><p><strong>Celebrate!</strong> Your package is live! Announce it to your users.</p></li>
+</ol>
+</section>
+<section id="notes-on-versioning">
+<h3>Notes on versioning<a class="headerlink" href="#notes-on-versioning" title="Link to this heading">¶</a></h3>
+<p>One aspect of packaging that often gets overlooked is proper versioning. Here’s a quick primer on semantic versioning (semver):</p>
+<ol class="arabic simple">
+<li><p><strong>MAJOR version</strong>: Increment when you make incompatible API changes</p></li>
+<li><p><strong>MINOR version</strong>: Increment when you add functionality in a backward-compatible manner</p></li>
+<li><p><strong>PATCH version</strong>: Increment when you make backward-compatible bug fixes</p></li>
+</ol>
+<p>In practice, this looks like <code class="docutils literal notranslate"><span class="pre">1.2.3</span></code> (major.minor.patch).</p>
+<p>The scaffolding uses <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> to manage your version numbers automatically based on git tags. This is incredibly handy because:</p>
+<ol class="arabic simple">
+<li><p>You don’t have to manually update version numbers in your code</p></li>
+<li><p>The version will always reflect the state of your git repository</p></li>
+<li><p>Development versions will have suffixes like <code class="docutils literal notranslate"><span class="pre">.dev1+g1234abc</span></code></p></li>
+</ol>
+<p>To release a new version, just create a git tag:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span>-a<span class="w"> </span><span class="m">0</span>.1.0<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Initial release&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>--tags
+</pre></div>
+</div>
+<p>This not only marks the release in your git history but also sets the version for your package when it’s built.</p>
+</section>
+</section>
+<section id="coding-standards-linting">
+<h2>Coding standards &amp; linting<a class="headerlink" href="#coding-standards-linting" title="Link to this heading">¶</a></h2>
+<p>Consistent code is easier to read, review, and maintain.</p>
+<ul class="simple">
+<li><p><strong>Style guides:</strong> Follow the <a class="reference external" href="https://github.com/BiocPy/developer_guide">BiocPy Developer Guide</a> and/or the <a class="reference external" href="https://google.github.io/styleguide/pyguide.html">Google Python Style Guide</a>.</p></li>
+<li><p><strong>Automated checks (<code class="docutils literal notranslate"><span class="pre">pre-commit-bot</span></code>):</strong> The scaffold sets up <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code>. This runs tools automatically, catching formatting issues, linting errors, and other common problems.</p>
+<ul>
+<li><p>Enable the <a class="reference external" href="https://pre-commit.ci/">pre-commit bot</a> for your repository</p></li>
+<li><p><strong>Tools:</strong> It typically runs:</p>
+<ul>
+<li><p><strong><a class="reference external" href="https://docs.astral.sh/ruff/"><code class="docutils literal notranslate"><span class="pre">ruff</span></code></a>:</strong> An extremely fast linter and formatter that catches <em>tons</em> of potential issues and style violations.</p></li>
+<li><p>Maybe <a class="reference external" href="https://github.com/psf/black"><code class="docutils literal notranslate"><span class="pre">black</span></code></a> for opinionated formatting (often handled by <code class="docutils literal notranslate"><span class="pre">ruff</span></code> now).</p></li>
+<li><p>Checks for large files, leftover merge conflict markers, etc.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Code coverage (<code class="docutils literal notranslate"><span class="pre">codecov</span></code>):</strong> Enable the <a class="reference external" href="https://about.codecov.io/">Codecov</a> GitHub app on your repository. The workflows are usually pre-configured to upload coverage reports. This gives you nice visualizations of test coverage over time and on PRs.</p></li>
+</ul>
+</section>
+<section id="extras">
+<h2>Extras<a class="headerlink" href="#extras" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Interfacing with C++:</strong> Integrating C++ code is possible but more involved (usually using <code class="docutils literal notranslate"><span class="pre">pybind11</span></code>). The core packaging process is similar, but you’ll have slightly different build steps and different GitHub Actions configurations. Check out <a class="reference external" href="https://github.com/BiocPy/IRanges">IRanges</a>, <a class="reference external" href="https://github.com/libscran/scranpy">scranpy</a>, <a class="reference external" href="https://github.com/BiocPy/rds2py">rds2py</a> etc for examples, and reach out for help.</p>
+<ul>
+<li><p><a class="reference external" href="https://scikit-build.readthedocs.io/en/latest/">scikit-build</a> also provides a process to interface with c++ code</p></li>
+</ul>
+</li>
+<li><p><strong>Publish to conda-forge/bioconda:</strong> Publishing to these registries is pretty straightforward for pure python packages, it’s a bit more involved for packages with C++ bindings, e.g. check out our <a class="reference external" href="https://github.com/conda-forge/staged-recipes/pull/29764">PR</a> to get a couple of BiocPy packages into conda-forge.</p></li>
+<li><p><strong>Control files in the distribution:</strong> Use <a class="reference external" href="https://setuptools.pypa.io/en/latest/userguide/miscellaneous.html">MANIFEST.IN</a> to set up rules to ignore folders or files in the source that do not need to be in the generated wheels and installation files.</p></li>
+<li><p><strong>Are you a Rust enthusiast?</strong> Check out <a class="reference external" href="https://pyo3.rs/v0.25.0/">PyO3</a>.</p></li>
+</ul>
+</section>
+<section id="other-tools-guides-to-explore">
+<h2>Other tools/guides to explore:<a class="headerlink" href="#other-tools-guides-to-explore" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Info on <a class="reference external" href="https://setuptools.pypa.io/en/latest/index.html">setuptools</a>, that our scaffolding tool uses</p></li>
+<li><p><a class="reference external" href="https://www.pyopensci.org/python-package-guide/index.html">PyOpenSci’s python package guide</a></p></li>
+<li><p>Get familiar with <a class="reference external" href="https://git-scm.com/">git</a>, or if you want to get fancy, use <a class="reference external" href="https://github.com/jj-vcs/jj">jujustu</a></p></li>
+<li><p>There are many alternatives to each of the tools mentioned here</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/machow/quartodoc">quartodoc</a>/<a class="reference external" href="https://www.mkdocs.org/">mkdocs</a> instead of Sphinx</p></li>
+<li><p><a class="reference external" href="https://nox.thea.codes/en/stable/">nox</a> instead of tox</p></li>
+<li><p><a class="reference external" href="https://python-poetry.org/">poetry</a> and <a class="reference external" href="https://hatch.pypa.io/">hatch</a> (probably go with the later since its developed by the official PyPI working group on packaging) instead of setuptools</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
+<p>And that’s the gist of it! It might seem like a lot initially, but once you go through the cycle a couple of times, it becomes second nature. Remember the key steps: scaffold, code in <code class="docutils literal notranslate"><span class="pre">src/</span></code>, test in <code class="docutils literal notranslate"><span class="pre">tests/</span></code> (run with <code class="docutils literal notranslate"><span class="pre">tox</span></code>), manage dependencies in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>, document in <code class="docutils literal notranslate"><span class="pre">docs/</span></code> (build with <code class="docutils literal notranslate"><span class="pre">tox</span> <span class="pre">-e</span> <span class="pre">docs</span></code>), use branches for development, and tag for releases.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="contributing.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Contributing</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="readme.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">BiocSetup</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Jayaram Kancherla
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Python Package Development</a><ul>
+<li><a class="reference internal" href="#overview-of-this-document">Overview of this document</a></li>
+<li><a class="reference internal" href="#packaging-setup">Packaging setup</a></li>
+<li><a class="reference internal" href="#adding-your-source-code">Adding your source code</a><ul>
+<li><a class="reference internal" href="#writing-and-running-tests">Writing and running tests</a></li>
+<li><a class="reference internal" href="#help-my-dependencies-are-missing">“Help! My Dependencies Are Missing!”</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documentation-with-sphinx">Documentation with Sphinx</a></li>
+<li><a class="reference internal" href="#development-workflows">Development workflows</a><ul>
+<li><a class="reference internal" href="#the-development-cycle">The development cycle:</a></li>
+<li><a class="reference internal" href="#the-release-cycle-deploying-to-pypi">The Release Cycle (Deploying to PyPI):</a></li>
+<li><a class="reference internal" href="#notes-on-versioning">Notes on versioning</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#coding-standards-linting">Coding standards &amp; linting</a></li>
+<li><a class="reference internal" href="#extras">Extras</a></li>
+<li><a class="reference internal" href="#other-tools-guides-to-explore">Other tools/guides to explore:</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=4621528c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
+</html>
