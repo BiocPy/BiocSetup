@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 0.3.2
+- Python 3.9 has reached its EOL, Update GitHub actions to run from 3.10 - 3.14.
+
 ## Version 0.3.0 - 0.3.1
 
 - Use Trusted publisher workflow to publish packages to PyPI.
