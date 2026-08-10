@@ -1,6 +1,5 @@
 import shutil
 from pathlib import Path
-from typing import Optional
 
 from pyscaffold import api, file_system, shell
 from pyscaffoldext.markdown.extension import Markdown
@@ -12,7 +11,7 @@ __license__ = "MIT"
 
 def create_repository(
     project_path: str,
-    description: Optional[str] = "Add a short description here!",
+    description: str | None = "Add a short description here!",
     license: str = "MIT",
     rst: bool = False,
 ) -> None:
