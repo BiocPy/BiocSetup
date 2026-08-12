@@ -1,7 +1,9 @@
 # Changelog
 
-## Version 0.3.2
+## Version 0.3.2 - 0.3.4
+
 - Python 3.9 has reached its EOL, Update GitHub actions to run from 3.10 - 3.14.
+- Update ruff-pre-commit config.
 
 ## Version 0.3.0 - 0.3.1
 

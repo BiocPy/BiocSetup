@@ -153,18 +153,20 @@ and [PyScaffold](https://pyscaffold.org/).
 [tool.ruff]
 line-length = 120
 src = ["src"]
-exclude = ["tests"]
-lint.extend-ignore = ["F821"]
+exclude = ["tests", "docs"]
+
+[tool.ruff.lint]
+extend-ignore = ["F821"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402", "F401"]
+
 [tool.ruff.format]
 docstring-code-format = true
 docstring-code-line-length = 20
-
-[tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["E402", "F401"]
 """
 
     with open(pyprj_path, "w") as f:
